@@ -1,61 +1,3 @@
-local CustomSkins = {
-	fnp_kessoku = {
-		Skin = {
-			SurfaceAppearance = {
-				ColorMap = 'rbxassetid://79949493025555',
-				NormalMap = 'rbxassetid://70444952216130',
-				RoughnessMap = 'rbxassetid://98140236988560',
-				MetalnessMap = 'rbxassetid://70444952216130'
-			}
-		},
-		Data = {
-			ItemName = 'FNP-45',
-			DisplayName = 'Kessoku',
-			TextureID = '79949493025555',
-			Rarity = 'legendary',
-			SkinClass = 'Guns'
-		}
-	};
-	m4a1_murderdrones = {
-		CustomTexture = true,
-		Texture = 'https://cdn.discordapp.com/attachments/1016737935871193088/1340827045290184785/m4a1_murderdrones-NoPBR.png?ex=67b3c5fe&is=67b2747e&hm=0eacb94a716b04175476620c5eaf83152e059001cfa5e381e9005033a8a9d42c&',
-		Skin = {
-			SurfaceAppearance = {
-				ColorMap = '',
-				NormalMap = 'rbxassetid://108632010350823',
-				RoughnessMap = 'rbxassetid://121479559643568',
-				MetalnessMap = 'rbxassetid://124465923619827'
-			}
-		},
-		Data = {
-			ItemName = 'M4A1-1',
-			DisplayName = 'Murder Drones',
-			TextureID = '',
-			Rarity = 'legendary',
-			SkinClass = 'Guns'
-		}
-	},
-	fal_superhentai = {
-		CustomTexture = true,
-		Texture = 'https://cdn.discordapp.com/attachments/1016737935871193088/1340891553861734430/qhahaha_Magpart21Mtl.png?ex=67b40213&is=67b2b093&hm=6ef8e368bc98192fec9403cb05a23508cfcf1b517601283b847a0329e7bf2d3d&',
-		Skin = {
-			SurfaceAppearance = {
-				ColorMap = '',
-				NormalMap = 'rbxassetid://108632010350823',
-				RoughnessMap = 'rbxassetid://121479559643568',
-				MetalnessMap = 'rbxassetid://124465923619827'
-			}
-		},
-		Data = {
-			ItemName = 'FN-FAL',
-			DisplayName = 'Mega Hentai',
-			TextureID = '',
-			Rarity = 'legendary',
-			SkinClass = 'Guns'
-		}
-	}
-}
-
 local HTTPService = game:GetService('HttpService')
 local ReplicatedStorage = game:GetService('ReplicatedStorage')
 local UserInputService = game:GetService('UserInputService')
@@ -107,15 +49,16 @@ local function getsynassetfromurl(URL)
 	end
 end
 
-
-for skinname, Skin in CustomSkins do
-	if Skin.CustomTexture then
-		local idtexture = getsynassetfromurl(Skin.Texture)
-		Skin.Skin.SurfaceAppearance.ColorMap = idtexture
-		Skin.Data.TextureID = idtexture
+if getgenv().CustomsSkins then
+	for skinname, Skin in getgenv().CustomsSkins do
+		if Skin.CustomTexture then
+			local idtexture = getsynassetfromurl(Skin.Texture)
+			Skin.Skin.SurfaceAppearance.ColorMap = idtexture
+			Skin.Data.TextureID = idtexture
+		end
+		Skins[skinname] = Skin.Skin
+		SkinsData[skinname] = Skin.Data
 	end
-	Skins[skinname] = Skin.Skin
-	SkinsData[skinname] = Skin.Data
 end
 
 local Decals = {
