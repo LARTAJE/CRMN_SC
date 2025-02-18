@@ -55,6 +55,8 @@ if getgenv().CustomsSkins then
 			local idtexture = getsynassetfromurl(Skin.Texture)
 			Skin.Skin.SurfaceAppearance.ColorMap = idtexture
 			Skin.Data.TextureID = idtexture
+                        warn(idtexture)
+
 		end
 		Skins[skinname] = Skin.Skin
 		SkinsData[skinname] = Skin.Data
